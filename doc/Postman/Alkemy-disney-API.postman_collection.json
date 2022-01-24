@@ -1,0 +1,425 @@
+{
+	"info": {
+		"_postman_id": "d63560f2-8eb9-4df2-9460-fa9c7cfe77d5",
+		"name": "Alkemy-disney-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Genre",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Science-Fiction\",\r\n    \"image\": \"/usr/tmp/sciencefiction.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/genres",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"genres"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Genres",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/genres",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"genres"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Genre/id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/genres/33",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"genres",
+						"33"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Characters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/characters",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Character?idMovie",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"image\": \"/usr/tmp/YelenaBelova.png\",\r\n    \"name\": \"Yelena Belova\",\r\n    \"age\": 25,\r\n    \"weight\": 45,\r\n    \"story\": \"Es una ex-agente de la Habitación Roja, que fue asignada en una misión con Natalia Romanoff, Alexei Shostakov y Melina Vostokoff, para actuar de una familia estadounidense.\",\r\n    \"movies\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/characters?idMovie=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters"
+					],
+					"query": [
+						{
+							"key": "idMovie",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Character/id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"image\": \"/usr/tmp/NatashaRomanoff.png\",\r\n    \"name\": \"Natasha Romanoff (Black Widow)\",\r\n    \"age\": 32,\r\n    \"weight\": 42,\r\n    \"story\": \"Es una espía y una experta combatiente cuerpo a cuerpo, entrenada en la Sala Roja desde la infancia. Finalmente se une a la agencia antiterrorista SHIELD y se convierte en un miembro clave y eventual líder de los Vengadores.\",\r\n    \"movies\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/characters/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Character/id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/characters/13",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters",
+						"13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Character/id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/characters/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Characters?filters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/characters",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Luca Paguro",
+							"disabled": true
+						},
+						{
+							"key": "age",
+							"value": "50",
+							"disabled": true
+						},
+						{
+							"key": "weight",
+							"value": "42",
+							"disabled": true
+						},
+						{
+							"key": "movies",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/movies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movie/id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/movies/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movie",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"image\": \"/usr/tmp/encanto.png\",\r\n    \"title\": \"Encanto\",\r\n    \"creationDate\":\"2021-11-25\",\r\n    \"rating\": 4,\r\n    \"genreId\": 1,\r\n    \"characters\": [\r\n        {\r\n            \"image\": \"/usr/tmp/MirabelMadrigal.png\",\r\n            \"name\": \"Mirabel Madrigal\",\r\n            \"age\": 15,\r\n            \"weight\": 52,\r\n            \"story\": \"Es la protagonista de Encanto, ella es una joven que no tiene ningún don especial cuando todos los miembros de la familia Madrigal cuentan con un don especial.\",\r\n            \"movies\": []\r\n        },\r\n        {\r\n            \"image\": \"/usr/tmp/AlmaMadrigal.png\",\r\n            \"name\": \"Alma Madrigal\",\r\n            \"age\": 75,\r\n            \"weight\": 44,\r\n            \"story\": \"Ella es la matriarca de la familia Madrigal, madre de Julieta Madrigal, Pepa Madrigal y Bruno Madrigal.\",\r\n            \"movies\": []\r\n        },\r\n                {\r\n            \"image\": \"/usr/tmp/BrunoMadrigal.png\",\r\n            \"name\": \"Bruno Madrigal\",\r\n            \"age\": 50,\r\n            \"weight\": 46,\r\n            \"story\": \"Hijo de Alma Madrigal y hermano trillizo de Julieta Madrigal y Pepa Madrigal.\",\r\n            \"movies\": []\r\n        },\r\n                {\r\n            \"image\": \"/usr/tmp/JulietaMadrigal.png\",\r\n            \"name\": \"Julieta Madrigal\",\r\n            \"age\": 50,\r\n            \"weight\": 42,\r\n            \"story\": \"Ella es la esposa de Agustín Madrigal y madre de Isabela Madrigal, Luisa Madrigal y Mirabel Madrigal.\",\r\n            \"movies\": []\r\n        },\r\n                {\r\n            \"image\": \"/usr/tmp/PepaMadrigal.png\",\r\n            \"name\": \"Pepa Madrigal\",\r\n            \"age\": 50,\r\n            \"weight\": 40,\r\n            \"story\": \"Ella es la esposa de Félix Madrigal y madre de Dolores Madrigal, Camilo Madrigal y Antonio Madrigal.\",\r\n            \"movies\": []\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/movies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movie w/ existing characters",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"image\": \"/usr/tmp/avengers1.png\",\r\n    \"title\": \"Avengers\",\r\n    \"creationDate\":\"2012-04-11\",\r\n    \"rating\": 5,\r\n    \"genreId\": 2,\r\n    \"characters\": [\r\n        {\r\n            \"image\": \"/usr/tmp/Ironman.png\",\r\n            \"name\": \"Ironman\",\r\n            \"age\": 52,\r\n            \"weight\": 55,\r\n            \"story\": \"Iron Man (conocido en español como el Hombre de Hierro) es un superhéroe que aparece en los cómics estadounidenses publicados por Marvel Comics.\",\r\n            \"movies\": []\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/movies/withcharacters?charactersId=8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"withcharacters"
+					],
+					"query": [
+						{
+							"key": "charactersId",
+							"value": "8",
+							"description": "Id's of existing characters in the database."
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movie/id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"image\": \"/usr/tmp/blackwidow.png\",\r\n    \"title\": \"Black Widow\",\r\n    \"creationDate\": \"2021-06-29\",\r\n    \"rating\": 3,\r\n    \"genreId\": 2,\r\n    \"characters\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/movies/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movie/id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/movies/62",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"62"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movies?filters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/movies?genre=1&order=ASC",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "genre",
+							"value": "1"
+						},
+						{
+							"key": "order",
+							"value": "ASC"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
