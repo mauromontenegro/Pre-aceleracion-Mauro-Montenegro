@@ -46,7 +46,7 @@ public class CharacterServiceImpl implements CharacterService {
         // Saving the entity.
         Character characterEntitySaved = characterRepository.save(characterEntity);
         // Setting the character to the movie.
-        movieService.addCharacter(idMovie, characterEntitySaved);
+        movieService.addCharacter(idMovie, characterEntitySaved.getId());
         return characterMapper.characterEntity2DTO(characterEntitySaved, true);
     }
 

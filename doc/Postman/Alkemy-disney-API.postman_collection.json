@@ -303,7 +303,7 @@
 			"response": []
 		},
 		{
-			"name": "Movie w/ existing characters",
+			"name": "New Movie w/ existing characters",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -333,6 +333,52 @@
 							"value": "8",
 							"description": "Id's of existing characters in the database."
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add existent Character to a Movie",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/movies/movie/3/character/19",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"movie",
+						"3",
+						"character",
+						"19"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Character from Movie",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/movies/movie/3/character/19",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"movie",
+						"3",
+						"character",
+						"19"
 					]
 				}
 			},
@@ -393,7 +439,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/movies?genre=1&order=ASC",
+					"raw": "http://localhost:8080/movies?order=ASC",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -405,16 +451,18 @@
 					"query": [
 						{
 							"key": "name",
-							"value": null,
+							"value": "",
 							"disabled": true
 						},
 						{
 							"key": "genre",
-							"value": "1"
+							"value": "1",
+							"disabled": true
 						},
 						{
 							"key": "order",
-							"value": "ASC"
+							"value": "ASC",
+							"description": "* Required"
 						}
 					]
 				}

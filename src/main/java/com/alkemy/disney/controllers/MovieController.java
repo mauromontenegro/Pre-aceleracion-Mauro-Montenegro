@@ -70,6 +70,30 @@ public class MovieController {
     }
 
     /**
+     * Set an existent character to an existent movie.
+     * @param idMovie
+     * @param idCharacter
+     * @return
+     */
+    @PostMapping("/movie/{idMovie}/character/{idCharacter}")
+    public ResponseEntity<MovieDTO> setCharacter2Movie(@PathVariable Long idMovie, @PathVariable Long idCharacter) {
+        movieService.addCharacter(idMovie, idCharacter);
+        return ResponseEntity.ok().body(movieService.getById(idMovie));
+    }
+
+    /**
+     * Delete a character from an existent movie.
+     * @param idMovie
+     * @param idCharacter
+     * @return
+     */
+    @DeleteMapping("/movie/{idMovie}/character/{idCharacter}")
+    public ResponseEntity<MovieDTO> deleteCharacterFromMovie(@PathVariable Long idMovie, @PathVariable Long idCharacter) {
+        movieService.deleteCharacter(idMovie, idCharacter);
+        return ResponseEntity.ok().body(movieService.getById(idMovie));
+    }
+
+    /**
      * Get a movie by id.
      * @param id
      * @return
@@ -91,14 +115,8 @@ public class MovieController {
     public ResponseEntity<List<MovieBasicDTO>> getMoviesByFilters(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) Long genre,
-            @RequestParam(required = false) String order
+            @RequestParam String order
     ) {
-        List<MovieBasicDTO> movies;
-        if (name == null && genre == null && order == null) {
-            movies = movieService.getAllBasicMovies();
-        } else {
-            movies = movieService.getByFilters(name, genre, order);
-        }
-        return ResponseEntity.ok().body(movies);
+        return ResponseEntity.ok().body(movieService.getByFilters(name, genre, order));
     }
 }

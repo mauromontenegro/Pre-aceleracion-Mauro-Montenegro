@@ -78,12 +78,25 @@ public class MovieServiceImpl implements MovieService {
     /**
      * Add a new character to a movie.
      * @param idMovie
-     * @param character
+     * @param idCharacter
      */
-    public void addCharacter(Long idMovie, Character character) {
+    public void addCharacter(Long idMovie, Long idCharacter) {
         Movie movie = getEntityById(idMovie);
         Set<Character> characters = movie.getCharacters();
-        characters.add(character);
+        characters.add(characterService.getEntityById(idCharacter));
+        movie.setCharacters(characters);
+        movieRepository.save(movie);
+    }
+
+    /**
+     * Delete a character from a movie.
+     * @param idMovie
+     * @param idCharacter
+     */
+    public void deleteCharacter(Long idMovie, Long idCharacter) {
+        Movie movie = getEntityById(idMovie);
+        Set<Character> characters = movie.getCharacters();
+        characters.remove(characterService.getEntityById(idCharacter));
         movie.setCharacters(characters);
         movieRepository.save(movie);
     }

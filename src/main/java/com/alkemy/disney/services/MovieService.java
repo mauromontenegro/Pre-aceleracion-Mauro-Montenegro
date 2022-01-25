@@ -16,7 +16,9 @@ public interface MovieService {
 
     void delete(Long id);
 
-    void addCharacter(Long idMovie, Character character);
+    void addCharacter(Long idMovie, Long idCharacter);
+
+    void deleteCharacter(Long idMovie, Long idCharacter);
 
     void addCharacterList(Long idMovie, Set<Long> charactersId);
 

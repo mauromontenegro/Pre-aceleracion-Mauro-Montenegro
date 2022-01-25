@@ -2,6 +2,7 @@ package com.alkemy.disney.controllers;
 
 import com.alkemy.disney.dto.CharacterDTO;
 import com.alkemy.disney.dto.basics.CharacterBasicDTO;
+import com.alkemy.disney.entities.Character;
 import com.alkemy.disney.services.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -81,12 +82,6 @@ public class CharacterController {
             @RequestParam(required = false) Long weight,
             @RequestParam(required = false) Set<Long> movies
     ) {
-        List<CharacterBasicDTO> characters;
-        if (name == null && age == null && weight == null && movies == null) {
-            characters = characterService.getAllBasicCharacters();
-        } else {
-            characters = characterService.getByFilters(name, age, weight, movies);
-        }
-        return ResponseEntity.ok().body(characters);
+        return ResponseEntity.ok().body(characterService.getByFilters(name, age, weight, movies));
     }
 }
