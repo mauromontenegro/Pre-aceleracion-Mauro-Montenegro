@@ -5,6 +5,7 @@ import com.alkemy.disney.dto.basics.CharacterBasicDTO;
 import com.alkemy.disney.dto.filters.CharacterFiltersDTO;
 import com.alkemy.disney.entities.Character;
 import com.alkemy.disney.entities.Movie;
+import com.alkemy.disney.exceptions.ParamNotFound;
 import com.alkemy.disney.mappers.CharacterMapper;
 import com.alkemy.disney.repositories.CharacterRepository;
 import com.alkemy.disney.repositories.specifications.CharacterSpecification;
@@ -58,6 +59,9 @@ public class CharacterServiceImpl implements CharacterService {
      */
     public CharacterDTO update(Long id, CharacterDTO characterDTO) {
         Character characterEntity = characterRepository.getById(id);
+        if (characterEntity == null) {
+            throw new ParamNotFound("Character Id not valid.");
+        }
         characterEntity.setImage(characterDTO.getImage());
         characterEntity.setName(characterDTO.getName());
         characterEntity.setAge(characterDTO.getAge());
@@ -71,9 +75,7 @@ public class CharacterServiceImpl implements CharacterService {
      * Soft DELETE a character.
      * @param id
      */
-    public void delete(Long id) {
-        characterRepository.deleteById(id);
-    }
+    public void delete(Long id) {characterRepository.deleteById(id);}
 
     /**
      * Get all basic Characters (image and name) as a list.
@@ -104,6 +106,9 @@ public class CharacterServiceImpl implements CharacterService {
      */
     public CharacterDTO getById(Long id) {
         Character characterEntity = characterRepository.getById(id);
+        if (characterEntity == null) {
+            throw new ParamNotFound("Character Id not valid.");
+        }
         CharacterDTO characterDTO = characterMapper.characterEntity2DTO(characterEntity, true);
         return characterDTO;
     }

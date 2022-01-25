@@ -40,12 +40,15 @@ public class MovieSpecification {
             query.distinct(true);
 
             // Order resolver
-            String orderByField = "creationDate";
-            query.orderBy(
-                    filtersDTO.isASC() ?
-                            criteriaBuilder.asc(root.get(orderByField)) :
-                            criteriaBuilder.desc(root.get(orderByField))
-            );
+            if (filtersDTO.getOrder() != null) {
+                String orderByField = "creationDate";
+                query.orderBy(
+                        filtersDTO.isASC() ?
+                                criteriaBuilder.asc(root.get(orderByField)) :
+                                criteriaBuilder.desc(root.get(orderByField))
+                );
+            }
+
 
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };

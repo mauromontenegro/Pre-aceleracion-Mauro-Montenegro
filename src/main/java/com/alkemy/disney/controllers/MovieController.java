@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
 
@@ -25,7 +26,7 @@ public class MovieController {
      * @return
      */
     @PostMapping
-    public ResponseEntity<MovieDTO> save(@RequestBody MovieDTO movieDTO) {
+    public ResponseEntity<MovieDTO> save(@Valid @RequestBody MovieDTO movieDTO) {
         MovieDTO movie = movieService.save(movieDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(movie);
     }
@@ -37,7 +38,7 @@ public class MovieController {
      * @return
      */
     @PutMapping("/{id}")
-    public ResponseEntity<MovieDTO> update(@PathVariable Long id, @RequestBody MovieDTO movieDTO) {
+    public ResponseEntity<MovieDTO> update(@PathVariable Long id, @Valid @RequestBody MovieDTO movieDTO) {
         MovieDTO updated = movieService.update(id, movieDTO);
         return ResponseEntity.ok().body(updated);
     }
@@ -62,7 +63,7 @@ public class MovieController {
     @PostMapping("/withcharacters")
     public ResponseEntity<MovieDTO> saveWithExistentCharacters(
             @RequestParam(required = false)Set<Long> charactersId,
-            @RequestBody MovieDTO movieDTO
+            @Valid @RequestBody MovieDTO movieDTO
     ) {
         MovieDTO movie = movieService.save(movieDTO);
         movieService.addCharacterList(movie.getId(), charactersId);
@@ -115,7 +116,7 @@ public class MovieController {
     public ResponseEntity<List<MovieBasicDTO>> getMoviesByFilters(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) Long genre,
-            @RequestParam String order
+            @RequestParam(required = false) String order
     ) {
         return ResponseEntity.ok().body(movieService.getByFilters(name, genre, order));
     }

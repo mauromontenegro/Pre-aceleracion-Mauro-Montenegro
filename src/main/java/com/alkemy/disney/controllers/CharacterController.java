@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
 
@@ -29,7 +30,7 @@ public class CharacterController {
      * @param characterDTO
      */
     @PostMapping
-    public ResponseEntity<CharacterDTO> save(@RequestParam Long idMovie, @RequestBody CharacterDTO characterDTO) {
+    public ResponseEntity<CharacterDTO> save(@RequestParam Long idMovie, @Valid @RequestBody CharacterDTO characterDTO) {
         return ResponseEntity.ok().body(characterService.save(characterDTO, idMovie));
     }
 
@@ -40,7 +41,7 @@ public class CharacterController {
      * @return
      */
     @PutMapping("/{id}")
-    public ResponseEntity<CharacterDTO> update(@PathVariable Long id, @RequestBody CharacterDTO characterDTO) {
+    public ResponseEntity<CharacterDTO> update(@PathVariable Long id, @Valid @RequestBody CharacterDTO characterDTO) {
         CharacterDTO updated = characterService.update(id, characterDTO);
         return ResponseEntity.ok().body(updated);
     }

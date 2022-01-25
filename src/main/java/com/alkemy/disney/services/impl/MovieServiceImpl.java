@@ -5,6 +5,7 @@ import com.alkemy.disney.dto.basics.MovieBasicDTO;
 import com.alkemy.disney.dto.filters.MovieFiltersDTO;
 import com.alkemy.disney.entities.Character;
 import com.alkemy.disney.entities.Movie;
+import com.alkemy.disney.exceptions.ParamNotFound;
 import com.alkemy.disney.mappers.CharacterMapper;
 import com.alkemy.disney.mappers.MovieMapper;
 import com.alkemy.disney.repositories.MovieRepository;
@@ -58,6 +59,9 @@ public class MovieServiceImpl implements MovieService {
      */
     public MovieDTO update(Long id, MovieDTO movieDTO) {
         Movie movieEntity = movieRepository.getById(id);
+        if (movieEntity == null) {
+            throw new ParamNotFound("Movie Id not valid.");
+        }
         movieEntity.setImage(movieDTO.getImage());
         movieEntity.setTitle(movieDTO.getTitle());
         movieEntity.setCreationDate(movieDTO.getCreationDate());
@@ -82,6 +86,9 @@ public class MovieServiceImpl implements MovieService {
      */
     public void addCharacter(Long idMovie, Long idCharacter) {
         Movie movie = getEntityById(idMovie);
+        if (movie == null) {
+            throw new ParamNotFound("Movie Id not valid.");
+        }
         Set<Character> characters = movie.getCharacters();
         characters.add(characterService.getEntityById(idCharacter));
         movie.setCharacters(characters);
@@ -95,6 +102,9 @@ public class MovieServiceImpl implements MovieService {
      */
     public void deleteCharacter(Long idMovie, Long idCharacter) {
         Movie movie = getEntityById(idMovie);
+        if (movie == null) {
+            throw new ParamNotFound("Movie Id not valid.");
+        }
         Set<Character> characters = movie.getCharacters();
         characters.remove(characterService.getEntityById(idCharacter));
         movie.setCharacters(characters);
@@ -108,6 +118,9 @@ public class MovieServiceImpl implements MovieService {
      */
     public void addCharacterList(Long idMovie, Set<Long> charactersId) {
         Movie movie = getEntityById(idMovie);
+        if (movie == null) {
+            throw new ParamNotFound("Movie Id not valid.");
+        }
         Set<Character> movieCharacters = movie.getCharacters();
         for (Long id : charactersId) {
             movieCharacters.add(characterService.getEntityById(id));
@@ -141,6 +154,9 @@ public class MovieServiceImpl implements MovieService {
      */
     public MovieDTO getById(Long id) {
         Movie movieEntity = movieRepository.getById(id);
+        if (movieEntity == null) {
+            throw new ParamNotFound("Movie Id not valid.");
+        }
         MovieDTO movieDTO = movieMapper.movieEntity2DTO(movieEntity, true);
         return movieDTO;
     }
@@ -155,6 +171,9 @@ public class MovieServiceImpl implements MovieService {
     public List<MovieBasicDTO> getByFilters(String title, Long genreId, String order) {
         MovieFiltersDTO filtersDTO = new MovieFiltersDTO(title, genreId, order);
         List<Movie> entities = movieRepository.findAll(movieSpecification.getByFilters(filtersDTO));
+        if (entities.isEmpty()) {
+            throw new ParamNotFound("No movies found with the indicated parameters.");
+        }
         return movieMapper.movieEntityList2BasicDTOList(entities);
     }
 
@@ -164,6 +183,10 @@ public class MovieServiceImpl implements MovieService {
      * @return
      */
     public Movie getEntityById(Long id) {
-        return movieRepository.getById(id);
+        Movie movie = movieRepository.getById(id);
+        if (movie == null) {
+            throw new ParamNotFound("Movie Id not valid.");
+        }
+        return movie;
     }
 }

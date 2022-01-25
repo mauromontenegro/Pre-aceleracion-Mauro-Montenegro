@@ -17,5 +17,5 @@ public class MovieFiltersDTO {
         this.order = order;
     }
     // Order
-    public boolean isASC() {return order.compareToIgnoreCase("ASC") == 0;}
+    public boolean isASC() {return this.order.compareToIgnoreCase("ASC") == 0;}
 }

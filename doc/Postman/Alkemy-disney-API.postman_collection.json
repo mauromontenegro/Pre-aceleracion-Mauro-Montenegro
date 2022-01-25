@@ -439,7 +439,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/movies?order=ASC",
+					"raw": "http://localhost:8080/movies",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -451,7 +451,7 @@
 					"query": [
 						{
 							"key": "name",
-							"value": "",
+							"value": "Lola",
 							"disabled": true
 						},
 						{
@@ -462,7 +462,7 @@
 						{
 							"key": "order",
 							"value": "ASC",
-							"description": "* Required"
+							"disabled": true
 						}
 					]
 				}
