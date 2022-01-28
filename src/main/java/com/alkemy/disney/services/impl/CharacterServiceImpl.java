@@ -124,6 +124,9 @@ public class CharacterServiceImpl implements CharacterService {
     public List<CharacterBasicDTO> getByFilters(String name, Long age, Long weight, Set<Long> movies) {
         CharacterFiltersDTO filtersDTO = new CharacterFiltersDTO(name, age, weight, movies);
         List<Character> entities = characterRepository.findAll(characterSpecification.getByFilters(filtersDTO));
+        if (entities.isEmpty()) {
+            throw new ParamNotFound("No characters found with the indicated parameters.");
+        }
         return characterMapper.characterEntityList2BasicDTOList(entities);
     }
 

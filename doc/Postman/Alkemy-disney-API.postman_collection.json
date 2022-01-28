@@ -6,10 +6,78 @@
 	},
 	"item": [
 		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"memg@gmail.com\",\r\n    \"password\": \"password2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"memg@gmail.com\",\r\n    \"password\": \"password2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Genre",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzMzNDU2MCwiaWF0IjoxNjQzMjkzNzYwfQ.k854CgbvC-5hL0spcCS5YSlj48vB3b6O_gHmosPgmfY",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"name\": \"Science-Fiction\",\r\n    \"image\": \"/usr/tmp/sciencefiction.png\"\r\n}",
@@ -37,7 +105,13 @@
 			"name": "Genres",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/genres",
 					"protocol": "http",
@@ -56,7 +130,13 @@
 			"name": "Genre/id",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/genres/33",
 					"protocol": "http",
@@ -76,7 +156,13 @@
 			"name": "Characters",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/characters",
 					"protocol": "http",
@@ -95,7 +181,13 @@
 			"name": "Character?idMovie",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"image\": \"/usr/tmp/YelenaBelova.png\",\r\n    \"name\": \"Yelena Belova\",\r\n    \"age\": 25,\r\n    \"weight\": 45,\r\n    \"story\": \"Es una ex-agente de la Habitación Roja, que fue asignada en una misión con Natalia Romanoff, Alexei Shostakov y Melina Vostokoff, para actuar de una familia estadounidense.\",\r\n    \"movies\": []\r\n}",
@@ -129,7 +221,13 @@
 			"name": "Character/id",
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"image\": \"/usr/tmp/NatashaRomanoff.png\",\r\n    \"name\": \"Natasha Romanoff (Black Widow)\",\r\n    \"age\": 32,\r\n    \"weight\": 42,\r\n    \"story\": \"Es una espía y una experta combatiente cuerpo a cuerpo, entrenada en la Sala Roja desde la infancia. Finalmente se une a la agencia antiterrorista SHIELD y se convierte en un miembro clave y eventual líder de los Vengadores.\",\r\n    \"movies\": []\r\n}",
@@ -158,7 +256,13 @@
 			"name": "Character/id",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/characters/13",
 					"protocol": "http",
@@ -178,7 +282,13 @@
 			"name": "Character/id",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/characters/8",
 					"protocol": "http",
@@ -198,7 +308,13 @@
 			"name": "Characters?filters",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/characters",
 					"protocol": "http",
@@ -239,7 +355,13 @@
 			"name": "Movies",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/movies",
 					"protocol": "http",
@@ -258,7 +380,13 @@
 			"name": "Movie/id",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/movies/6",
 					"protocol": "http",
@@ -278,7 +406,13 @@
 			"name": "Movie",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"image\": \"/usr/tmp/encanto.png\",\r\n    \"title\": \"Encanto\",\r\n    \"creationDate\":\"2021-11-25\",\r\n    \"rating\": 4,\r\n    \"genreId\": 1,\r\n    \"characters\": [\r\n        {\r\n            \"image\": \"/usr/tmp/MirabelMadrigal.png\",\r\n            \"name\": \"Mirabel Madrigal\",\r\n            \"age\": 15,\r\n            \"weight\": 52,\r\n            \"story\": \"Es la protagonista de Encanto, ella es una joven que no tiene ningún don especial cuando todos los miembros de la familia Madrigal cuentan con un don especial.\",\r\n            \"movies\": []\r\n        },\r\n        {\r\n            \"image\": \"/usr/tmp/AlmaMadrigal.png\",\r\n            \"name\": \"Alma Madrigal\",\r\n            \"age\": 75,\r\n            \"weight\": 44,\r\n            \"story\": \"Ella es la matriarca de la familia Madrigal, madre de Julieta Madrigal, Pepa Madrigal y Bruno Madrigal.\",\r\n            \"movies\": []\r\n        },\r\n                {\r\n            \"image\": \"/usr/tmp/BrunoMadrigal.png\",\r\n            \"name\": \"Bruno Madrigal\",\r\n            \"age\": 50,\r\n            \"weight\": 46,\r\n            \"story\": \"Hijo de Alma Madrigal y hermano trillizo de Julieta Madrigal y Pepa Madrigal.\",\r\n            \"movies\": []\r\n        },\r\n                {\r\n            \"image\": \"/usr/tmp/JulietaMadrigal.png\",\r\n            \"name\": \"Julieta Madrigal\",\r\n            \"age\": 50,\r\n            \"weight\": 42,\r\n            \"story\": \"Ella es la esposa de Agustín Madrigal y madre de Isabela Madrigal, Luisa Madrigal y Mirabel Madrigal.\",\r\n            \"movies\": []\r\n        },\r\n                {\r\n            \"image\": \"/usr/tmp/PepaMadrigal.png\",\r\n            \"name\": \"Pepa Madrigal\",\r\n            \"age\": 50,\r\n            \"weight\": 40,\r\n            \"story\": \"Ella es la esposa de Félix Madrigal y madre de Dolores Madrigal, Camilo Madrigal y Antonio Madrigal.\",\r\n            \"movies\": []\r\n        }\r\n    ]\r\n}",
@@ -306,7 +440,13 @@
 			"name": "New Movie w/ existing characters",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"image\": \"/usr/tmp/avengers1.png\",\r\n    \"title\": \"Avengers\",\r\n    \"creationDate\":\"2012-04-11\",\r\n    \"rating\": 5,\r\n    \"genreId\": 2,\r\n    \"characters\": [\r\n        {\r\n            \"image\": \"/usr/tmp/Ironman.png\",\r\n            \"name\": \"Ironman\",\r\n            \"age\": 52,\r\n            \"weight\": 55,\r\n            \"story\": \"Iron Man (conocido en español como el Hombre de Hierro) es un superhéroe que aparece en los cómics estadounidenses publicados por Marvel Comics.\",\r\n            \"movies\": []\r\n        }\r\n    ]\r\n}",
@@ -342,9 +482,15 @@
 			"name": "Add existent Character to a Movie",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8080/movies/movie/3/character/19",
+					"raw": "http://localhost:8080/movies/3/character/19",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -352,7 +498,6 @@
 					"port": "8080",
 					"path": [
 						"movies",
-						"movie",
 						"3",
 						"character",
 						"19"
@@ -365,7 +510,13 @@
 			"name": "Character from Movie",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/movies/movie/3/character/19",
 					"protocol": "http",
@@ -388,7 +539,13 @@
 			"name": "Movie/id",
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"image\": \"/usr/tmp/blackwidow.png\",\r\n    \"title\": \"Black Widow\",\r\n    \"creationDate\": \"2021-06-29\",\r\n    \"rating\": 3,\r\n    \"genreId\": 2,\r\n    \"characters\": []\r\n}",
@@ -417,7 +574,13 @@
 			"name": "Movie/id",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/movies/62",
 					"protocol": "http",
@@ -437,7 +600,13 @@
 			"name": "Movies?filters",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/movies",
 					"protocol": "http",

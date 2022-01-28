@@ -76,7 +76,7 @@ public class MovieController {
      * @param idCharacter
      * @return
      */
-    @PostMapping("/movie/{idMovie}/character/{idCharacter}")
+    @PostMapping("/{idMovie}/character/{idCharacter}")
     public ResponseEntity<MovieDTO> setCharacter2Movie(@PathVariable Long idMovie, @PathVariable Long idCharacter) {
         movieService.addCharacter(idMovie, idCharacter);
         return ResponseEntity.ok().body(movieService.getById(idMovie));
