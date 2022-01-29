@@ -36,4 +36,14 @@ public class Character {
 	private List<Movie> movies = new ArrayList<>();
 
 	private boolean deleted = Boolean.FALSE;
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		final Character other = (Character) obj;
+		return other.id == this.id;
+	}
 }

@@ -4,7 +4,6 @@ import com.alkemy.disney.dto.CharacterDTO;
 import com.alkemy.disney.dto.basics.CharacterBasicDTO;
 import com.alkemy.disney.dto.filters.CharacterFiltersDTO;
 import com.alkemy.disney.entities.Character;
-import com.alkemy.disney.entities.Movie;
 import com.alkemy.disney.exceptions.ParamNotFound;
 import com.alkemy.disney.mappers.CharacterMapper;
 import com.alkemy.disney.repositories.CharacterRepository;
@@ -16,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -58,17 +58,17 @@ public class CharacterServiceImpl implements CharacterService {
      * @return
      */
     public CharacterDTO update(Long id, CharacterDTO characterDTO) {
-        Character characterEntity = characterRepository.getById(id);
-        if (characterEntity == null) {
+        Optional<Character> characterEntity = characterRepository.findById(id);
+        if (!characterEntity.isPresent()) {
             throw new ParamNotFound("Character Id not valid.");
         }
-        characterEntity.setImage(characterDTO.getImage());
-        characterEntity.setName(characterDTO.getName());
-        characterEntity.setAge(characterDTO.getAge());
-        characterEntity.setWeight(characterDTO.getWeight());
-        characterEntity.setStory(characterDTO.getStory());
-        characterRepository.save(characterEntity);
-        return characterMapper.characterEntity2DTO(characterEntity, false);
+        characterEntity.get().setImage(characterDTO.getImage());
+        characterEntity.get().setName(characterDTO.getName());
+        characterEntity.get().setAge(characterDTO.getAge());
+        characterEntity.get().setWeight(characterDTO.getWeight());
+        characterEntity.get().setStory(characterDTO.getStory());
+        characterRepository.save(characterEntity.get());
+        return characterMapper.characterEntity2DTO(characterEntity.get(), false);
     }
 
     /**
@@ -105,11 +105,11 @@ public class CharacterServiceImpl implements CharacterService {
      * @return
      */
     public CharacterDTO getById(Long id) {
-        Character characterEntity = characterRepository.getById(id);
-        if (characterEntity == null) {
+        Optional<Character> characterEntity = characterRepository.findById(id);
+        if (!characterEntity.isPresent()) {
             throw new ParamNotFound("Character Id not valid.");
         }
-        CharacterDTO characterDTO = characterMapper.characterEntity2DTO(characterEntity, true);
+        CharacterDTO characterDTO = characterMapper.characterEntity2DTO(characterEntity.get(), true);
         return characterDTO;
     }
 
@@ -136,6 +136,10 @@ public class CharacterServiceImpl implements CharacterService {
      * @return
      */
     public Character getEntityById(Long id) {
-        return characterRepository.getById(id);
+        Optional<Character> character = characterRepository.findById(id);
+        if (!character.isPresent()) {
+            throw new ParamNotFound("Character Id not valid.");
+        }
+        return character.get();
     }
 }

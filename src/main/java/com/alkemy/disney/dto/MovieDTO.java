@@ -5,8 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -19,14 +18,15 @@ public class MovieDTO {
     private Long id;
 
     private String image;
-    @NotNull
+    @NotNull(message = "Movie title is required.")
     private String title;
 
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate creationDate;
-    @Size(min = 1, max = 5)
+    @Min(value = 1, message = "Rating must be between 1 and 5.")
+    @Max(value = 5, message = "Rating must be between 1 and 5.")
     private Long rating;
-    @NotNull
+    @NotNull(message = "Genre Id is required.")
     private Long genreId;
 
     private List<CharacterDTO> characters;

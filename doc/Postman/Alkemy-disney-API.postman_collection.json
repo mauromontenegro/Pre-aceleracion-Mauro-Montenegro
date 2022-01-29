@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"memg@gmail.com\",\r\n    \"password\": \"password2\"\r\n}",
+							"raw": "{\r\n    \"username\": \"test290122@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -68,91 +68,6 @@
 			]
 		},
 		{
-			"name": "Genre",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzMzNDU2MCwiaWF0IjoxNjQzMjkzNzYwfQ.k854CgbvC-5hL0spcCS5YSlj48vB3b6O_gHmosPgmfY",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Science-Fiction\",\r\n    \"image\": \"/usr/tmp/sciencefiction.png\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/genres",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"genres"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Genres",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8080/genres",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"genres"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Genre/id",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8080/genres/33",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"genres",
-						"33"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Characters",
 			"request": {
 				"method": "GET",
@@ -172,46 +87,6 @@
 					"port": "8080",
 					"path": [
 						"characters"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Character?idMovie",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"image\": \"/usr/tmp/YelenaBelova.png\",\r\n    \"name\": \"Yelena Belova\",\r\n    \"age\": 25,\r\n    \"weight\": 45,\r\n    \"story\": \"Es una ex-agente de la Habitación Roja, que fue asignada en una misión con Natalia Romanoff, Alexei Shostakov y Melina Vostokoff, para actuar de una familia estadounidense.\",\r\n    \"movies\": []\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/characters?idMovie=3",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"characters"
-					],
-					"query": [
-						{
-							"key": "idMovie",
-							"value": "3"
-						}
 					]
 				}
 			},
@@ -273,6 +148,35 @@
 					"path": [
 						"characters",
 						"13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Character from Movie",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/movies/movie/3/character/19",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"movie",
+						"3",
+						"character",
+						"19"
 					]
 				}
 			},
@@ -437,7 +341,7 @@
 			"response": []
 		},
 		{
-			"name": "New Movie w/ existing characters",
+			"name": "Movie w/ existing characters",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -473,63 +377,6 @@
 							"value": "8",
 							"description": "Id's of existing characters in the database."
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Add existent Character to a Movie",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8080/movies/3/character/19",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"movies",
-						"3",
-						"character",
-						"19"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Character from Movie",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZW1nQGdtYWlsLmNvbSIsImV4cCI6MTY0MzI3MTcwMywiaWF0IjoxNjQzMjMwOTAzfQ.pX7KdRY-jtUEfz-yLuFGL24nw1Vvs4PBKbgsb_dd0as",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8080/movies/movie/3/character/19",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"movies",
-						"movie",
-						"3",
-						"character",
-						"19"
 					]
 				}
 			},

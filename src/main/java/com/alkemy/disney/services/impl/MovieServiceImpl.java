@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 
@@ -58,16 +59,16 @@ public class MovieServiceImpl implements MovieService {
      * @return
      */
     public MovieDTO update(Long id, MovieDTO movieDTO) {
-        Movie movieEntity = movieRepository.getById(id);
-        if (movieEntity == null) {
+        Optional<Movie> movieEntity = movieRepository.findById(id);
+        if (!movieEntity.isPresent()) {
             throw new ParamNotFound("Movie Id not valid.");
         }
-        movieEntity.setImage(movieDTO.getImage());
-        movieEntity.setTitle(movieDTO.getTitle());
-        movieEntity.setCreationDate(movieDTO.getCreationDate());
-        movieEntity.setRating(movieDTO.getRating());
-        movieEntity.setGenreId(movieDTO.getGenreId());
-        Movie movieEntitySaved = movieRepository.save(movieEntity);
+        movieEntity.get().setImage(movieDTO.getImage());
+        movieEntity.get().setTitle(movieDTO.getTitle());
+        movieEntity.get().setCreationDate(movieDTO.getCreationDate());
+        movieEntity.get().setRating(movieDTO.getRating());
+        movieEntity.get().setGenreId(movieDTO.getGenreId());
+        Movie movieEntitySaved = movieRepository.save(movieEntity.get());
         return movieMapper.movieEntity2DTO(movieEntitySaved, true);
     }
 
@@ -85,14 +86,14 @@ public class MovieServiceImpl implements MovieService {
      * @param idCharacter
      */
     public void addCharacter(Long idMovie, Long idCharacter) {
-        Movie movie = getEntityById(idMovie);
-        if (movie == null) {
+        Optional<Movie> movie = getEntityById(idMovie);
+        if (!movie.isPresent()) {
             throw new ParamNotFound("Movie Id not valid.");
         }
-        Set<Character> characters = movie.getCharacters();
+        Set<Character> characters = movie.get().getCharacters();
         characters.add(characterService.getEntityById(idCharacter));
-        movie.setCharacters(characters);
-        movieRepository.save(movie);
+        movie.get().setCharacters(characters);
+        movieRepository.save(movie.get());
     }
 
     /**
@@ -101,14 +102,14 @@ public class MovieServiceImpl implements MovieService {
      * @param idCharacter
      */
     public void deleteCharacter(Long idMovie, Long idCharacter) {
-        Movie movie = getEntityById(idMovie);
-        if (movie == null) {
+        Optional<Movie> movie = getEntityById(idMovie);
+        if (!movie.isPresent()) {
             throw new ParamNotFound("Movie Id not valid.");
         }
-        Set<Character> characters = movie.getCharacters();
+        Set<Character> characters = movie.get().getCharacters();
         characters.remove(characterService.getEntityById(idCharacter));
-        movie.setCharacters(characters);
-        movieRepository.save(movie);
+        movie.get().setCharacters(characters);
+        movieRepository.save(movie.get());
     }
 
     /**
@@ -117,16 +118,16 @@ public class MovieServiceImpl implements MovieService {
      * @param charactersId
      */
     public void addCharacterList(Long idMovie, Set<Long> charactersId) {
-        Movie movie = getEntityById(idMovie);
-        if (movie == null) {
+        Optional <Movie> movie = getEntityById(idMovie);
+        if (!movie.isPresent()) {
             throw new ParamNotFound("Movie Id not valid.");
         }
-        Set<Character> movieCharacters = movie.getCharacters();
+        Set<Character> movieCharacters = movie.get().getCharacters();
         for (Long id : charactersId) {
             movieCharacters.add(characterService.getEntityById(id));
         }
-        movie.setCharacters(movieCharacters);
-        movieRepository.save(movie);
+        movie.get().setCharacters(movieCharacters);
+        movieRepository.save(movie.get());
     }
 
     /**
@@ -153,11 +154,11 @@ public class MovieServiceImpl implements MovieService {
      * @return
      */
     public MovieDTO getById(Long id) {
-        Movie movieEntity = movieRepository.getById(id);
-        if (movieEntity == null) {
+        Optional<Movie> movieEntity = movieRepository.findById(id);
+        if (!movieEntity.isPresent()) {
             throw new ParamNotFound("Movie Id not valid.");
         }
-        MovieDTO movieDTO = movieMapper.movieEntity2DTO(movieEntity, true);
+        MovieDTO movieDTO = movieMapper.movieEntity2DTO(movieEntity.get(), true);
         return movieDTO;
     }
 
@@ -182,9 +183,9 @@ public class MovieServiceImpl implements MovieService {
      * @param id
      * @return
      */
-    public Movie getEntityById(Long id) {
-        Movie movie = movieRepository.getById(id);
-        if (movie == null) {
+    public Optional<Movie> getEntityById(Long id) {
+        Optional<Movie> movie = movieRepository.findById(id);
+        if (!movie.isPresent()) {
             throw new ParamNotFound("Movie Id not valid.");
         }
         return movie;

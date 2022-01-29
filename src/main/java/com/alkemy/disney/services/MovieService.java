@@ -6,6 +6,7 @@ import com.alkemy.disney.entities.Character;
 import com.alkemy.disney.entities.Movie;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public interface MovieService {
@@ -28,7 +29,7 @@ public interface MovieService {
 
     List<MovieBasicDTO> getByFilters(String title, Long genreId, String order);
 
-    Movie getEntityById(Long id);
+    Optional<Movie> getEntityById(Long id);
 
     List<MovieDTO> getAllMovies();
 }
