@@ -23,11 +23,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {ParamNotFound.class})
     protected ResponseEntity<Object> handleParamNotFound(RuntimeException ex, WebRequest request) {
         ApiErrorDTO errorDTO = new ApiErrorDTO(
-                HttpStatus.BAD_REQUEST,
+                HttpStatus.NOT_FOUND,
                 ex.getMessage(),
                 Arrays.asList("Param Not Found")
         );
-        return handleExceptionInternal(ex, errorDTO, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+        return handleExceptionInternal(ex, errorDTO, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
     /**

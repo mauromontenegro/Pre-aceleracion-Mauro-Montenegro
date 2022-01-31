@@ -4,8 +4,8 @@ import com.alkemy.disney.dto.GenreDTO;
 import com.alkemy.disney.entities.Genre;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class GenreMapper {
@@ -41,10 +41,6 @@ public class GenreMapper {
      * @return
      */
     public List<GenreDTO> genreEntityList2DTOList(List<Genre> genreEntities) {
-        List<GenreDTO> genreDTOS = new ArrayList<>();
-        for (Genre genre : genreEntities) {
-            genreDTOS.add(genreEntity2DTO(genre));
-        }
-        return genreDTOS;
+        return genreEntities.stream().map(genre -> genreEntity2DTO(genre) ).collect(Collectors.toList());
     }
 }

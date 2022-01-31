@@ -8,9 +8,9 @@ import com.alkemy.disney.entities.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 public class MovieMapper {
@@ -58,17 +58,26 @@ public class MovieMapper {
     }
 
     /**
+     * Mapper for Movie to BasicDTO conversion.
+     * @param movieEntity
+     * @return
+     */
+    public MovieBasicDTO movieEntity2BasicDTO(Movie movieEntity) {
+        MovieBasicDTO movieBasicDTO = new MovieBasicDTO();
+        movieBasicDTO.setImage(movieEntity.getImage());
+        movieBasicDTO.setTitle(movieEntity.getTitle());
+        movieBasicDTO.setCreationDate(movieEntity.getCreationDate());
+        return movieBasicDTO;
+    }
+
+    /**
      * Mapper for Movie Entities List to DTOs List conversion.
      * @param movieEntities
      * @param loadCharacters
      * @return
      */
     public List<MovieDTO> movieEntityList2DTOList(List<Movie> movieEntities, boolean loadCharacters) {
-        List<MovieDTO> movieDTOS = new ArrayList<>();
-        for (Movie movie : movieEntities) {
-            movieDTOS.add(movieEntity2DTO(movie, loadCharacters));
-        }
-        return movieDTOS;
+        return movieEntities.stream().map(movie -> movieEntity2DTO(movie, loadCharacters) ).collect(Collectors.toList());
     }
 
     /**
@@ -77,27 +86,15 @@ public class MovieMapper {
      * @return
      */
     public List<Movie> movieDTOList2EntityList(List<MovieDTO> movieDTOS) {
-        List<Movie> movieEntities = new ArrayList<>();
-        for (MovieDTO movie : movieDTOS) {
-            movieEntities.add(movieDTO2Entity(movie));
-        }
-        return movieEntities;
+        return movieDTOS.stream().map(movieDTO -> movieDTO2Entity(movieDTO) ).collect(Collectors.toList());
     }
 
     /**
      * Mapper for Movie Entities List to BasicDTO conversion.
-     * @param movieEntityList
+     * @param movieEntities
      * @return
      */
-    public List<MovieBasicDTO> movieEntityList2BasicDTOList(List<Movie> movieEntityList) {
-        List<MovieBasicDTO> movieBasicDTOList = new ArrayList<>();
-        for (Movie movie : movieEntityList) {
-            MovieBasicDTO movieBasicDTO = new MovieBasicDTO();
-            movieBasicDTO.setImage(movie.getImage());
-            movieBasicDTO.setTitle(movie.getTitle());
-            movieBasicDTO.setCreationDate(movie.getCreationDate());
-            movieBasicDTOList.add(movieBasicDTO);
-        }
-        return movieBasicDTOList;
+    public List<MovieBasicDTO> movieEntityList2BasicDTOList(List<Movie> movieEntities) {
+        return movieEntities.stream().map(movie -> movieEntity2BasicDTO(movie) ).collect(Collectors.toList());
     }
 }

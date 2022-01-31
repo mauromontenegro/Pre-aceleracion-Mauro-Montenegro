@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("genres")
+@RequestMapping("/genres")
 public class GenreController {
     @Autowired
     private GenreService genreService;

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class CharacterMapper {
@@ -52,16 +53,24 @@ public class CharacterMapper {
     }
 
     /**
+     * Mapper for Character to BasicDTO conversion.
+     * @param characterEntity
+     * @return
+     */
+    public CharacterBasicDTO characterEntity2BasicDTO(Character characterEntity) {
+        CharacterBasicDTO characterBasicDTO = new CharacterBasicDTO();
+        characterBasicDTO.setName(characterEntity.getName());
+        characterBasicDTO.setImage(characterEntity.getImage());
+        return characterBasicDTO;
+    }
+
+    /**
      * Mapper for CharacterDTOList to CharacterEntitySet conversion.
      * @param characterDTOList
      * @return
      */
     public Set<Character> characterDTOList2EntitySet(List<CharacterDTO> characterDTOList) {
-        Set<Character> characterEntitySet = new HashSet<>();
-        for (CharacterDTO character : characterDTOList) {
-            characterEntitySet.add(characterDTO2Entity(character));
-        }
-        return characterEntitySet;
+        return characterDTOList.stream().map(characterDTO -> characterDTO2Entity(characterDTO)).collect(Collectors.toSet());
     }
 
     /**
@@ -71,11 +80,7 @@ public class CharacterMapper {
      * @return
      */
     public List<CharacterDTO> characterEntitySet2DTOList(Collection<Character> characterEntitySet, boolean loadMovies) {
-        List<CharacterDTO> characterDTOList = new ArrayList<>();
-        for (Character character : characterEntitySet) {
-            characterDTOList.add(characterEntity2DTO(character, loadMovies));
-        }
-        return characterDTOList;
+        return characterEntitySet.stream().map(character -> characterEntity2DTO(character, loadMovies)).collect(Collectors.toList());
     }
 
     /**
@@ -84,13 +89,6 @@ public class CharacterMapper {
      * @return
      */
     public List<CharacterBasicDTO> characterEntityList2BasicDTOList(List<Character> characterEntityList) {
-        List<CharacterBasicDTO> characterBasicDTOList = new ArrayList<>();
-        for (Character character : characterEntityList) {
-            CharacterBasicDTO characterBasicDTO = new CharacterBasicDTO();
-            characterBasicDTO.setName(character.getName());
-            characterBasicDTO.setImage(character.getImage());
-            characterBasicDTOList.add(characterBasicDTO);
-        }
-        return characterBasicDTOList;
+        return characterEntityList.stream().map(character -> characterEntity2BasicDTO(character)).collect(Collectors.toList());
     }
 }
