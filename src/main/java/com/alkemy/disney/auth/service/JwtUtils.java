@@ -16,6 +16,8 @@ public class JwtUtils {
 
     private String SECRET_KEY = "secret";
 
+    private Integer expirationHours = 10;
+
     public String extractUsername(String token) {return extractClaim(token, Claims::getSubject);}
 
     public Date extractExpiration(String token) {return extractClaim(token, Claims::getExpiration);}
@@ -38,7 +40,7 @@ public class JwtUtils {
 
     private String createToken(Map<String, Object> claims, String subject) {
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 68 * 10)) // Valid for 10 hs.
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 68 * expirationHours)) // Valid for 10 hs.
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();
     }
 

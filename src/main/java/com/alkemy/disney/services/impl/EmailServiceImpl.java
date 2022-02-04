@@ -26,7 +26,7 @@ public class EmailServiceImpl implements EmailService {
     @Value("${alkemy.disney.email.enabled}")
     private boolean enabled;
 
-    public void sendWelcomeEmailTo(String to) {
+    public void sendWelcomeEmailTo(String to) throws Exception {
         if (!enabled) {
             return;
         }
@@ -50,12 +50,8 @@ public class EmailServiceImpl implements EmailService {
             request.setEndpoint("mail/send");
             request.setBody(mail.build());
             Response response = sg.api(request);
-
-            System.out.println(response.getStatusCode());
-            System.out.println(response.getBody());
-            System.out.println(response.getHeaders());
         } catch (IOException e) {
-            System.out.println("Error trying to send the email.");
+            throw new Exception("Error trying to send the email.");
         }
     }
 }

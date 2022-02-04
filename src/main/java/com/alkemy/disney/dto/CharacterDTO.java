@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Getter
@@ -16,15 +16,15 @@ import java.util.List;
 public class CharacterDTO {
 
     private Long id;
-
+    @NotBlank(message = "Character image is required.")
     private String image;
-    @NotNull(message = "Character name is required.")
+    @NotBlank(message = "Character name is required.")
     private String name;
     @Min(message = "Age must be at least 1.", value = 1)
     private Long age;
     @Min(message = "Weight must be a valid number.", value = 1)
     private Long weight;
-    @Max(message = "Story length must be less than 255 characters.", value = 255)
+    @Size(min=1, max=255, message = "Character story is required (máx 255 characters).")
     private String story;
 
     private List<MovieDTO> movies;

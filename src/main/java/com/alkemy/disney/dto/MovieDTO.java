@@ -16,11 +16,10 @@ import java.util.List;
 public class MovieDTO {
 
     private Long id;
-
+    @NotBlank(message = "Movie image is required.")
     private String image;
-    @NotNull(message = "Movie title is required.")
+    @NotBlank(message = "Movie title is required.")
     private String title;
-
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate creationDate;
     @Min(value = 1, message = "Rating must be between 1 and 5.")
